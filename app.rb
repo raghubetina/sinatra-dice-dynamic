@@ -5,6 +5,18 @@ get("/") do
   erb(:homepage)
 end
 
+get("/dynamic/50/6") do
+  @rolls = []
+
+  50.times do
+    die = rand(1..6)
+
+    @rolls.push(die)
+  end
+
+  erb(:flexible)
+end
+
 get("/dice/2/6") do
   first_die = rand(1..6)
 	second_die = rand(1..6)
@@ -26,9 +38,9 @@ get("/dice/2/10") do
 end
 
 get("/dice/1/20") do
-  die = rand(1..20)
+  @die = rand(1..20)
 	
-	@outcome = "You rolled a #{die}."
+	@outcome = "You rolled a #{@die}."
 	
 	erb(:one_twenty)
 end
